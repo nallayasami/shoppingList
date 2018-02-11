@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Main Page</title>
+</head>
+
+<body>
+    <h1>shopping list!</h1>
+
+    <ul id="list">
+
+    </ul>
+
+    <script>
+        const electron = require('electron');
+        const { ipcRenderer } = electron;
+        ipcRenderer.on('item:add', (event, item)=>{
+            const li = document.createElement('li');
+            li.innerHTML = item;
+            document.querySelector('#list').appendChild(li);    
+        })
+    </script>
+</body>
+
+</html>

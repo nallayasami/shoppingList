@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+
+    <form role="form">
+        <legend>Add Item</legend>
+
+        <div class="form-group">
+            <label for="input">label</label>
+            <input type="text" class="form-control" id="input" placeholder="Input field">
+        </div>
+
+
+
+        <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
+    <script>
+        const electron = require('electron');
+        const {ipcRenderer} = electron;
+        document.querySelector('form').addEventListener('submit', function (e) {
+            console.log('on submit', document.querySelector('#input').value);
+            e.preventDefault();
+            ipcRenderer.send("item:add", document.querySelector('#input').value);
+        });
+    </script>
+</body>
+
+</html>
